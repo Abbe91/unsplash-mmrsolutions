@@ -1,0 +1,33 @@
+#app {
+  height: 80vh;
+  width: 100%;
+}
+body {
+  background-image: url('../assets/hero.jpg');
+}
+.container {
+  display: flex;
+}
+
+.item {
+  background: #ce8888;
+  flex-basis: 100px;
+  height: 100px;
+  margin: 5px;
+}
+.grid-container {
+  margin: 0 auto;
+}
+
+.img {
+  list-style: none;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.img-preview {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
