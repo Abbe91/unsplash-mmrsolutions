@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import Gallery from './components/gallery'
-import SearchBox from './components/searchBox'
+import NavBar from './components/navBar/index'
+import Hero from './components/hero/index'
 
 const App = () => {
   const [input, setInput] = useState('')
   return (
-    <center>
-      <h1>search your photo</h1>
-      <SearchBox input={input} setInput={setInput} />
+    <div>
+      <NavBar input={input} setInput={setInput} />
+      <Hero input={input} setInput={setInput} />
       <Gallery query={input} />
-    </center>
+    </div>
   )
 }
 export default App
