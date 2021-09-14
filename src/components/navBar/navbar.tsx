@@ -12,14 +12,13 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Switch from '@material-ui/core/Switch';
+import DarkMode from '../ButtonDark/DarkMode';
 import useStyles from './styles';
 import "@fontsource/roboto"; // Loading Roboto font. Material-UI was designed with this font in mind.
 import {
   ThemeProvider,
-  Card,
   CardHeader,
   CardContent,
-  Box,
   Container,
   CssBaseline,
 } from "@material-ui/core";
@@ -44,10 +43,40 @@ const NavBar = ({input, setInput}) => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+// start
+// check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode'); 
 
-  const changeTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
+const enableDarkMode = () => {
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+
+
+const changeTheme = () => {
+  setIsDarkTheme(!isDarkTheme);
+  darkMode = localStorage.getItem('darkMode'); 
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  } else {  
+    disableDarkMode(); 
+  }
+};
+if (darkMode === 'enabled') {
+  console.log("turn to dark mode")
+}else {
+  console.log("turn to light mode")
+}
+
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -68,6 +97,7 @@ const NavBar = ({input, setInput}) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -103,6 +133,7 @@ const NavBar = ({input, setInput}) => {
           label={auth ? 'Light' : 'Dark'}
         />
       </FormGroup>
+      <DarkMode />
     </MenuItem>
     </Menu>
   );
@@ -119,10 +150,9 @@ const NavBar = ({input, setInput}) => {
             </CardContent>
     <div className={classes.grow}>
       <AppBar position="static" color="default">
-        <Toolbar>
-        <Typography className={classes.logo} variant="h6" noWrap>
-        Unsplash
-          </Typography>
+        <Toolbar className={classes.root} disableGutters={false}>
+          <Typography className={classes.pThick}>
+          Unsplash </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -144,6 +174,8 @@ const NavBar = ({input, setInput}) => {
               action={
                 <FormGroup>
                   <FormControlLabel
+                  id="dark-mode-toggle"
+                  class="dark-mode-toggle"
                     control={
                       <Switch checked={isDarkTheme} onChange={changeTheme} />
                     }

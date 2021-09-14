@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   hero: {
       minHeight: '50vh',
-    background: `url("/assets/hero.jpg"})`,
+    background: `url(${process.env.PUBLIC_URL + '../../../assets/hero.jpg'})`,
     width: '100%',
   },
   media: {

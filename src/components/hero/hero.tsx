@@ -6,10 +6,11 @@ import useStyles from './styles';
 const Hero = ({ input, setInput }) => {
 const classes = useStyles();
   return (
-      <div className={classes.hero}>
-        <div className={classes.heroContainer} >
-            <div className={classes.heroContent}>
-                <h1>Unsplash</h1>
+      <div className={classes.hero} >
+        <div className={classes.heroContainer}  >
+            <div className={classes.heroContent} >
+             
+                {/* <h1>Unsplash</h1>
                 <p>
                 The internet’s source of freely useable images.
                 Powered by creators everywhere.
@@ -27,7 +28,9 @@ const classes = useStyles();
                 </div>
             </div>
             </div>
-            <div className={classes.heroOverlay}  class="hero-overlay"></div>
+            <div className={classes.heroOverlay}  class="hero-overlay"></div> */}
+            </div>
+            </div>
     </div>
   );
 };
